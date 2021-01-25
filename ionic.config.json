@@ -1,5 +1,7 @@
 {
   "name": "HealtFitness",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
