@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">{{'Login_titulo' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="getstart">
+  <div class="login">
+  <ion-card>
+    <img width="20%" height="20%" style="margin-top: 5% !important;" src="assets/login_icono.png"/>
+    <ion-card-header>
+      <form [formGroup]="tasks" (ngSubmit)="this.sendForm()">
+        
+        <ion-item>
+          
+            <ion-label position="floating">{{'email' | translate}}</ion-label>
+            <ion-input formControlName="email"></ion-input>
+          
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating" >{{'contraseña' | translate}}</ion-label>
+          <ion-input formControlName="contraseña" type="password" ></ion-input>
+        </ion-item>
+
+        <ion-button style="margin-top: 2%;" shape="round" fill="outline" type="submit" [disabled]="!tasks.valid">{{'Login_titulo' | translate}}</ion-button>
+
+      </form>
+    </ion-card-header>
+      <ion-label style="text-align: center;">{{'registrarse' | translate}}</ion-label><br>
+
+      <ion-button style="margin-top: 2%;width: 70px !important;" shape="round" fill="outline" ><ion-icon name="person-add-outline"></ion-icon></ion-button>
+      
+    <ion-card-content>
+      
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>
