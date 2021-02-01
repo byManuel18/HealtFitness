@@ -1,0 +1,20 @@
+ion-card{
+    width: 300px !important;
+    text-align: center !important;
+    margin: auto !important;
+}
+
+.regis{
+   // background: url('../../../assets/alimentosejercicio.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center !important;
+    align-items: center !important;
+    display:flex !important;
+    background-position: center;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    z-index: 2;
+    position: relative;    
+}

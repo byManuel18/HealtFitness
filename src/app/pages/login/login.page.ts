@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/Usuario';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { BBDDServiceService } from 'src/app/services/bbddservice.service';
 import { UtilsServiceService } from 'src/app/services/utils-service.service';
 
@@ -12,7 +14,9 @@ import { UtilsServiceService } from 'src/app/services/utils-service.service';
 export class LoginPage implements OnInit {
   public tasks: FormGroup;
   public usuario:Usuario=null;
-  constructor(private formBuilder:FormBuilder,private bbdds:BBDDServiceService,private utils:UtilsServiceService) {
+  constructor(private formBuilder:FormBuilder,private bbdds:BBDDServiceService,private utils:UtilsServiceService,
+    private router:Router,private authS:AuthServiceService
+    ) {
     this.tasks=this.formBuilder.group({
       email: ['', [Validators.required,Validators.email]],
       contraseña: ['',[Validators.required,Validators.minLength(8)]]
@@ -20,6 +24,9 @@ export class LoginPage implements OnInit {
    }
 
   ngOnInit() {
+    if(this.authS.isLogged()){
+      this.router.navigate(['/']);
+    }
   }
 
   async sendForm(){
@@ -32,10 +39,20 @@ export class LoginPage implements OnInit {
     }
     await this.utils.dismiss();
     if(this.usuario!=null){
-      console.log("Usuario existen, porcedea a etrar en la apk");
+      if(this.usuario.contraseña===this.tasks.get('contraseña').value){
+        this.authS.login(this.usuario);
+        this.router.navigate(['/']);
+      }else{
+          this.utils.presentToast("No coinciden las credenciales","danger");
+      }
+      
     }else{
       console.log("No existe usuario con ese correo, registrese"); 
     }
+  }
+
+  Registro(){
+    this.router.navigate(['registro']);
   }
 
 }

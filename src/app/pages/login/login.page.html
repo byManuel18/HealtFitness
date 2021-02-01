@@ -4,18 +4,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding class="getstart">
+<ion-content>
   <div class="login">
   <ion-card>
     <img width="20%" height="20%" style="margin-top: 5% !important;" src="assets/login_icono.png"/>
     <ion-card-header>
       <form [formGroup]="tasks" (ngSubmit)="this.sendForm()">
-        
         <ion-item>
-          
             <ion-label position="floating">{{'email' | translate}}</ion-label>
             <ion-input formControlName="email"></ion-input>
-          
         </ion-item>
         <ion-item>
           <ion-label position="floating" >{{'contraseña' | translate}}</ion-label>
@@ -28,7 +25,7 @@
     </ion-card-header>
       <ion-label style="text-align: center;">{{'registrarse' | translate}}</ion-label><br>
 
-      <ion-button style="margin-top: 2%;width: 70px !important;" shape="round" fill="outline" ><ion-icon name="person-add-outline"></ion-icon></ion-button>
+      <ion-button style="margin-top: 2%;width: 70px !important;" shape="round" fill="outline" (click)="Registro()"><ion-icon name="person-add-outline"></ion-icon></ion-button>
       
     <ion-card-content>
       

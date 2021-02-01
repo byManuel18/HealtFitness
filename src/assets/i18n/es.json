@@ -3,6 +3,12 @@
     "Login_titulo":"INICIAR SESIÓN",
     "email":"Correo electrónico",
     "contraseña":"Contraseña",
-    "registrarse":"Registrarse"
+    "registrarse":"Registrarse",
+    "registrarse_titulo":"REGISTRARSE",
+    "nombre_regis":"Nombre",
+    "correo_regis":"Correo",
+    "altura_regis":"Altura",
+    "pesodeseado_regis":"Peso deseado",
+    "peso_regis":"Peso"
 
 }

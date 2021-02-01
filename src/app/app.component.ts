@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UtilsServiceService } from './services/utils-service.service';
+import { AuthServiceService } from './services/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private utilsS:UtilsServiceService
+    private utilsS:UtilsServiceService,
+    private auth:AuthServiceService
   ) {
     this.initializeApp();
   }
@@ -25,6 +27,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.utilsS.iniciarLenguaje();
+      this.auth.init();
     });
   }
 }

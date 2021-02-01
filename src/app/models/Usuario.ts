@@ -6,7 +6,7 @@ export interface Usuario{
     foto:string,
     peso:number,
     correo:string,
-    contrasña:string,
+    contraseña:string,
     altura:number,
-    peso_deseado:number,
+    pesodeseado:number,
 }

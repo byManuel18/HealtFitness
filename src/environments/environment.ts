@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
- firebaseConfig : {
+ firebaseConfig:{
     apiKey: "AIzaSyBQgcoZLQExk2Na3u2dB1DuBaFX1lBLYJo",
     authDomain: "healtfitness-a2368.firebaseapp.com",
     projectId: "healtfitness-a2368",
@@ -13,9 +13,12 @@ export const environment = {
     appId: "1:404139028543:web:6ddb36183dca5a5175888a",
     measurementId: "G-2LKFSRY801"
   },
+  default_image:'https://firebasestorage.googleapis.com/v0/b/healtfitness-a2368.appspot.com/o/no-disponible.png?alt=media&token=8f168b49-e0bd-4038-9c04-c9af6b13edba',
   apikey:'&tiBKuiQV@2Y(tZ5)p.)NXj8&/Qj7i',
   endpoint:'https://healtfitness.herokuapp.com/',
   getUserbyEmail:'usuario/search/',
+  createUser:'usuario/add',
+  filepathimageUser:'UsersImages/imageuser_'
 };
 
 /*

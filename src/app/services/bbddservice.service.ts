@@ -33,6 +33,24 @@ export class BBDDServiceService {
     });
   }
 
+  public createUsuario(usuario:Usuario):Promise<void>{
+    const endpoint=environment.endpoint+environment.createUser;
+
+    return new Promise((resolve,reject)=>{
+        if(usuario){
+          this.http.setDataSerializer('json');
+          this.http.post(endpoint,usuario,this.header).then(d=>{
+            resolve();
+          }).catch(error=>{
+            reject(error);
+          });
+        }else{
+          reject("No existe usuario");
+        }
+    });
+
+  }
+
   private get header(){
 
     return{

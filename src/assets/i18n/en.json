@@ -2,5 +2,13 @@
     "Login_titulo":"LOGIN",
     "email":"Email",
     "contraseña":"Passworld",
-    "registrarse":"Check in"
+    "registrarse":"Check in",
+    "registrarse_titulo":"CHECK IN",
+    "nombre_regis":"Name",
+    "correo_regis":"Email",
+    "altura_regis":"Height",
+    "pesodeseado_regis":"Desired weight",
+    "peso_regis":"Weight"
+    
+
 }
