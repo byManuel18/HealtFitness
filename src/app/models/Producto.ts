@@ -1,0 +1,17 @@
+export interface Producto{
+    id:number,
+    nombre:string,
+    foto:string,
+    porcion:number,
+    sal:number,
+    proteinas:number,
+    azucar:number,
+    carbohidratos:number,
+    fibra:number,
+    energia:number,
+    grasas_saturadas:number,
+    grasas_insaturadas:number,
+    id_usuario:number,
+    id_rutina?:number,
+    cantidad?:number,
+}

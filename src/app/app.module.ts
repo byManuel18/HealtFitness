@@ -22,6 +22,9 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 import { AuthServiceService } from './services/auth-service.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Vibration } from '@ionic-native/vibration/ngx';
+import { ThemeService } from './services/theme.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -47,11 +50,14 @@ export function createTranslateLoader(http: HttpClient) {
     SplashScreen,
     UtilsServiceService,
     BBDDServiceService,
+    ThemeService,
     AuthServiceService,
     AngularFireStorage,
     NativeStorage,
     HTTP,
     Camera,
+    Vibration,
+    InAppBrowser,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

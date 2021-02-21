@@ -14,6 +14,22 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'edit-add-producto',
+    loadChildren: () => import('./pages/edit-add-producto/edit-add-producto.module').then( m => m.EditAddProductoPageModule)
+  },
+  {
+    path: 'pagina-seleccion-productos',
+    loadChildren: () => import('./pages/pagina-seleccion-productos/pagina-seleccion-productos.module').then( m => m.PaginaSeleccionProductosPageModule)
+  },
+  {
+    path: 'edit-rutina',
+    loadChildren: () => import('./pages/edit-rutina/edit-rutina.module').then( m => m.EditRutinaPageModule)
+  },
+  {
+    path: 'edit-add-ejercicio',
+    loadChildren: () => import('./pages/edit-add-ejercicio/edit-add-ejercicio.module').then( m => m.EditAddEjercicioPageModule)
   }
 ];
 @NgModule({

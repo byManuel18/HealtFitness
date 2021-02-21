@@ -1,17 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
+    <ion-title  style="text-align: center;">
+      {{'ejercicios_titulo' | translate}}
     </ion-title>
+    <ion-searchbar style="text-align: center;" (ionInput)="search($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="this.cargaDatos($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-list>
+  <ion-item-sliding *ngFor="let ejer of this.items;let i=index">
+    <ion-item-options side="start">
+      <ion-item-option color="danger" expandable (click)="this.deleteEjer(ejer)">
+        <ion-icon name="trash" style="font-size: x-large;" ></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+    <ion-item >
+      <div>
+        <ion-label>{{ejer.nombre}}</ion-label>
+        <ion-label>{{'series' | translate}}: {{ejer.series}} </ion-label>
+        <ion-label>{{'repeticiones' | translate}}: {{ejer.repeticiones}}</ion-label>
+      </div>
+      <ion-button slot="end" (click)="this.editAddEjercicio(ejer)">{{'editar_titulo' | translate}}</ion-button>
+      <ion-button slot="end" *ngIf="ejer.url!=''" (click)="this.reproducir(ejer.url)">{{'vere_video' | translate}}</ion-button>
+    </ion-item>
+  </ion-item-sliding>
+</ion-list>
+  
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="this.editAddEjercicio(null)">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

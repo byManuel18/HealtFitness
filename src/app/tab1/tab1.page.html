@@ -1,11 +1,392 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
+    <ion-title> 
+      {{'diario_titulo' | translate}}
     </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button  shape="round" fill="outline" (click)="pirarse()">Salir</ion-button>
+
+  <ion-datetime style="text-align: center;" displayFormat="YYYY-MM-DD" [(ngModel)]="myDate" (ionChange)="Changedate($event)"></ion-datetime>
+  <ion-refresher slot="fixed" (ionRefresh)="this.cargarDatos($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="diario">
+    <ion-card>
+      <ion-card-header>
+          
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div style="text-align: center;">
+                
+                  <ion-label >{{'grasas_titulo' | translate}}</ion-label>
+                
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="text-align: center;">
+                
+                  <ion-label>{{'carbohidratos_productos' | translate}}</ion-label>
+                
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="text-align: center;">
+                
+                  <ion-label>{{'proteinas_priducto' | translate}}</ion-label>
+                
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="text-align: center;">
+                
+                  <ion-label>{{'calorias_producto' | translate}}</ion-label>
+                
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="text-align: center;">
+                
+               
+                
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+    <ion-list>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-item>
+            <ion-icon name="alarm-outline" slot="start"></ion-icon>
+            <ion-card-title>{{'desayuno_titulo' | translate}}</ion-card-title>
+            <ion-icon name="duplicate-outline" slot="end" (click)=this.addRutina(1)></ion-icon>
+          </ion-item>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list *ngIf="this.mostrar_desayuno">
+            
+            <ion-item-sliding *ngFor="let product of this.productos_desayuno;let i=index">
+              <ion-item-options side="start">
+                <ion-item-option color="danger" expandable (click)="this.deleteProducto(product,1)">
+                  <ion-icon name="trash" style="font-size: x-large;" ></ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+              <ion-item (click)="this.AddARutina(product,1)">
+                <ion-avatar slot="start">
+                  <img  src={{product.foto}}/>
+                </ion-avatar>
+                <ion-label>{{product.nombre}}     {{'calorias_producto' | translate}}: {{product.porcion}}g--> {{product.energia}}cal    {{'cantidad_producto_rutina' | translate}}: {{product.cantidad}}g</ion-label>
+              </ion-item>
+            </ion-item-sliding>
+          </ion-list>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label >{{n_g_desayuno}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_c_desayuno}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_p_desayuno}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_cal_desayuno}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: right;">
+                 
+                  <ion-icon name="{{this.button_showmore_desayuno}}" slot="end" (click)="this.ClickButtoShowDesayuno()"></ion-icon>
+                  
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+
+      
+      <ion-card>
+        <ion-card-header>
+          <ion-item>
+            <ion-icon name="fast-food-outline" slot="start"></ion-icon>
+            <ion-card-title>{{'almuerzo_titulo' | translate}}</ion-card-title>
+            <ion-icon name="duplicate-outline" slot="end" (click)=this.addRutina(2)></ion-icon>
+          </ion-item>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list *ngIf="this.mostrar_almuerzo">
+            
+              <ion-item-sliding *ngFor="let product of this.productos_almuerzo;let i=index">
+                <ion-item-options side="start">
+                  <ion-item-option color="danger" expandable (click)="this.deleteProducto(product,2)">
+                    <ion-icon name="trash" style="font-size: x-large;" ></ion-icon>
+                  </ion-item-option>
+                </ion-item-options>
+                <ion-item (click)="this.AddARutina(product,2)">
+                  <ion-avatar slot="start">
+                    <img  src={{product.foto}}/>
+                  </ion-avatar>
+                  <ion-label>{{product.nombre}}     {{'calorias_producto' | translate}}: {{product.porcion}}g--> {{product.energia}}cal    {{'cantidad_producto_rutina' | translate}}: {{product.cantidad}}g</ion-label>
+                </ion-item>
+              </ion-item-sliding>
+            
+          </ion-list>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label >{{n_g_almuerzo}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_c_almuerzo}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_p_almuerzo}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_cal_almuerzo}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: right;">
+                 
+                  <ion-icon name="{{this.button_showmore_almuerzo}}" slot="end" (click)="this.ClickButtoShowAlmuerzo()"></ion-icon>
+                  
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-card>
+        <ion-card-header>
+          <ion-item>
+            <ion-icon name="moon-outline" slot="start"></ion-icon>
+            <ion-card-title>{{'cena_titulo' | translate}}</ion-card-title>
+            <ion-icon name="duplicate-outline" slot="end" (click)=this.addRutina(3)></ion-icon>
+          </ion-item>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list *ngIf="this.mostrar_cena">
+            
+              <ion-item-sliding *ngFor="let product of this.productos_cena;let i=index">
+                <ion-item-options side="start">
+                  <ion-item-option color="danger" expandable (click)="this.deleteProducto(product,3)">
+                    <ion-icon name="trash" style="font-size: x-large;" ></ion-icon>
+                  </ion-item-option>
+                </ion-item-options>
+                <ion-item (click)="this.AddARutina(product,3)">
+                  <ion-avatar slot="start">
+                    <img  src={{product.foto}}/>
+                  </ion-avatar>
+                  <ion-label>{{product.nombre}}     {{'calorias_producto' | translate}}: {{product.porcion}}g--> {{product.energia}}cal    {{'cantidad_producto_rutina' | translate}}: {{product.cantidad}}g</ion-label>
+                </ion-item>
+              </ion-item-sliding>
+            
+          </ion-list>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label >{{n_g_cena}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_c_cena}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_p_cena}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_cal_cena}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: right;">
+                 
+                  <ion-icon name="{{this.button_showmore_cena}}" slot="end" (click)="this.ClickButtoShowCena()"></ion-icon>
+                  
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-card>
+        <ion-card-header>
+          <ion-item>
+            <ion-icon name="nutrition-outline" slot="start"></ion-icon>
+            <ion-card-title>{{'aperitivo_titulo' | translate}}</ion-card-title>
+            <ion-icon name="duplicate-outline" slot="end" (click)=this.addRutina(4)></ion-icon>
+          </ion-item>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list *ngIf="this.mostrar_aperitivo">
+            
+              <ion-item-sliding *ngFor="let product of this.productos_aperitivo;let i=index">
+                <ion-item-options side="start">
+                  <ion-item-option color="danger" expandable (click)="this.deleteProducto(product,4)">
+                    <ion-icon name="trash" style="font-size: x-large;" ></ion-icon>
+                  </ion-item-option>
+                </ion-item-options>
+                <ion-item (click)="this.AddARutina(product,1)">
+                  <ion-avatar slot="start">
+                    <img  src={{product.foto}}/>
+                  </ion-avatar>
+                  <ion-label>{{product.nombre}}     {{'calorias_producto' | translate}}: {{product.porcion}}g--> {{product.energia}}cal    {{'cantidad_producto_rutina' | translate}}: {{product.cantidad}}g</ion-label>
+                </ion-item>
+              </ion-item-sliding>
+            
+          </ion-list>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label >{{n_g_aperitivo}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_c_aperitivo}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_p_aperitivo}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: center;">
+                  
+                    <ion-label>{{n_cal_aperitivo}}</ion-label>
+                  
+                </div>
+              </ion-col>
+              <ion-col>
+                <div style="text-align: right;">
+                 
+                    <ion-icon name="{{this.button_showmore_aperitivo}}" slot="end"
+                      (click)="this.ClickButtoShowAperitivo()"></ion-icon>
+                  
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+    <ion-card>
+      <ion-card-header>
+          
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div style="text-align: center;">
+                
+                  <ion-label >{{this.total_g}}</ion-label>
+                
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="text-align: center;">
+                
+                  <ion-label>{{this.total_c}}</ion-label>
+                
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="text-align: center;">
+                
+                  <ion-label>{{this.total_p}}</ion-label>
+                
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="text-align: center;">
+                
+                  <ion-label>{{this.total_cal}}</ion-label>
+                
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="text-align: center;">
+                
+                <ion-label>{{'total' | translate}}</ion-label>
+                
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

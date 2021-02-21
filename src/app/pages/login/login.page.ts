@@ -29,6 +29,9 @@ export class LoginPage implements OnInit {
     }
   }
 
+/**
+ *  Método que comprueba que un usuario exista y coincidad sus credenciales. Si coinciden entra en la aplicación 
+ */
   async sendForm(){
     await this.utils.present();
     try{
@@ -43,14 +46,16 @@ export class LoginPage implements OnInit {
         this.authS.login(this.usuario);
         this.router.navigate(['/']);
       }else{
-          this.utils.presentToast("No coinciden las credenciales","danger");
+          this.utils.presentAlert('my-custom-class',this.utils.TranslateFrase('info_alert'),'',this.utils.TranslateFrase('no_credenciales_acept'),[this.utils.TranslateFrase('boton_aceptar_alert')]);
       }
       
     }else{
-      console.log("No existe usuario con ese correo, registrese"); 
+      this.utils.presentAlert('my-custom-class',this.utils.TranslateFrase('info_alert'),'',this.utils.TranslateFrase('no_usuario_existente'),[this.utils.TranslateFrase('boton_aceptar_alert')]);
     }
   }
-
+  /**
+   * Método que nos lleva a la página de registro
+   */
   Registro(){
     this.router.navigate(['registro']);
   }

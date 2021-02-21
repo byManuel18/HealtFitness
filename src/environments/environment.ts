@@ -17,8 +17,30 @@ export const environment = {
   apikey:'&tiBKuiQV@2Y(tZ5)p.)NXj8&/Qj7i',
   endpoint:'https://healtfitness.herokuapp.com/',
   getUserbyEmail:'usuario/search/',
+  getProductobyUser:'productos/usuario/',
+  getProductosUserAdmin:'productos/usuario-admin/',
   createUser:'usuario/add',
-  filepathimageUser:'UsersImages/imageuser_'
+  createProducto:'producto/add',
+  updateProducto:'productos/update/',
+  deleteproduct:'producto/delete/',
+  updateusuario:'usuario/update/',
+  addrutina:'rutina/add',
+  deleteRutina:'rutina/delete/',
+  updaterutina:'rutina/update/',
+  addejercicio:'ejercicio/add',
+  updateejercicio:'ejercicio/update/',
+  deleteejercicio:'ejercicio/delete/',
+  getejerciciosbyUser:'ejercicio/',
+  productocantidadrutina:'productos/usuario-rutina/',
+  filepathimageUser:'UsersImages/imageuser_',
+  filepathimageProducto:'UsersProducto/imageprod_',
+  filepathvideosEjerciciosUsuario:'UsersVideos/videoEjer_',
+  desayuno:1,
+  almuerzo:2,
+  cena:3,
+  aperitivo:4,
+  videoddisponible:'../../../assets/disponible video.png',
+  videoddisNOponible:'../../../assets/youtube-caidoedit.png'
 };
 
 /*

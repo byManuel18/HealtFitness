@@ -8,5 +8,5 @@ export interface Usuario{
     correo:string,
     contraseña:string,
     altura:number,
-    pesodeseado:number,
+    peso_deseado:number,
 }

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'ejercicio' | translate}}</ion-title>
+    <ion-button (click)="this.Salir()"  slot="end" style="margin-right: 8%;"> <ion-icon name="arrow-undo-outline" ></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="text-align: center;">
+    <form [formGroup]="tasks" (ngSubmit)="this.sendForm()">
+      <ion-item>
+        <img width="20%" height="90%" src={{this.imagen}} />
+        <ion-icon slot="end" name="image-outline" (click)="this.takeVideo(0)"></ion-icon>
+        <ion-icon slot="end" name="camera-outline" (click)="this.takeVideo(1)"></ion-icon>
+        <ion-icon slot="end" name="close-circle-outline" (click)="this.DeleteVideo()"></ion-icon>
+        <ion-icon *ngIf="this.ejercicio.id>0&&this.ejercicio.url!=''" slot="end" name="arrow-undo-outline" (click)="this.DevolverVideo()"></ion-icon>
+       
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'nombre_regis' | translate}}</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'series' | translate}}</ion-label>
+        <ion-input formControlName="series" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'repeticiones' | translate}}</ion-label>
+        <ion-input formControlName="repeticiones" type="number"></ion-input>
+      </ion-item>
+      <ion-button style="margin-top: 2%;" shape="round" fill="outline" type="submit" [disabled]="!tasks.valid">{{'titulo_guardar' | translate}}</ion-button>
+    </form>
+  </ion-card>
+
+</ion-content>

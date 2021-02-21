@@ -1,17 +1,34 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
+    <ion-title style="text-align: center;">
+      {{'misproductos_titulo' | translate}}
     </ion-title>
+    <ion-searchbar style="text-align: center;" (ionInput)="search($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-refresher slot="fixed" (ionRefresh)="this.cargaDatos($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item-sliding *ngFor="let product of this.items;let i=index">
+      <ion-item-options side="start">
+        <ion-item-option color="danger" expandable (click)="this.deleteProducto(product)">
+          <ion-icon name="trash" style="font-size: x-large;" ></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item (click)="this.editAddProducto(product)">
+        <ion-avatar slot="start">
+          <img  src={{product.foto}}/>
+        </ion-avatar>
+        <ion-label>{{product.nombre}} {{'calorias_producto' | translate}}: {{product.porcion}}g--> {{product.energia}}cal</ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="this.editAddProducto(null)">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -1,16 +1,23 @@
 <ion-menu side="start" content-id="main-content">
   <ion-header>
     <ion-toolbar translucent>
-      <ion-title>Menu</ion-title>
+      <ion-title>{{'opciones_titulo' | translate}}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
-    <ion-list>
+  <ion-content style="text-align: center !important;">
+    <ion-list >
       <ion-item>
-        <ion-icon name="warning" slot="start"></ion-icon>
-        <ion-label>Spam</ion-label>
+        <ion-icon name="moon"></ion-icon>
+        <ion-label style="text-align: center;">{{'modo_oscuro' | translate}}</ion-label>
+        <ion-checkbox  [checked]="this.darkmode" (ionChange)="changeTheme($event)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="earth"></ion-icon>
+        <ion-label style="text-align: center;">{{'ingles' | translate}}</ion-label>
+        <ion-checkbox [checked]="this.ingles" (ionChange)="changeLenguaje($event)"></ion-checkbox>
       </ion-item>
     </ion-list>
+    
   </ion-content>
 </ion-menu>
 
@@ -20,13 +27,65 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>PERFIL</ion-title>
+      <ion-title>{{'perfil' | translate}}</ion-title>
+      <ion-button  shape="round" fill="outline" slot="end"  (click)="this.Desconectarse()" >{{'desconectarse' | translate}}</ion-button>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
     <!----------------------aqui---------->
-    <video controls="controls" preload="metadata" webkit-playsinline="webkit-playsinline">
-      <source src="https://firebasestorage.googleapis.com/v0/b/notea-fa842.appspot.com/o/upload%2FVideo.mp4?alt=media&token=f4c256b4-bf88-49f7-a703-5033d8bca0d5" />
-    </video>
+    <ion-card>
+      <ion-card-header style="text-align: center;">
+        <img width="40%" height="40%" style="margin-top: 5% !important;" (click)="this.presentActionSheet()" src={{this.imagen}} />
+       <!-- <div>
+         <ion-icon class="item-icon" slot="start" name="image-outline" (click)="this.takePhoto(0)"></ion-icon>
+          <ion-icon class="item-icon" slot="end" name="camera-outline" (click)="this.takePhoto(1)"></ion-icon><br>
+          <ion-icon class="item-icon" name="close-circle-outline" (click)="this.QuitarFoto()"></ion-icon>
+        </div>-->
+        
+      </ion-card-header>
+
+      <ion-card-content style="text-align: center !important;">
+        <form [formGroup]="tasks" (ngSubmit)="this.sendForm()">
+          <ion-grid class="box">
+            <ion-row>
+              <ion-col>
+                <div><ion-item>
+                 
+                  <ion-label position="floating" style="text-align: center;">{{'nombre_regis' | translate}}</ion-label>
+                  <ion-input  style="text-align: center;" formControlName="nombre"></ion-input>
+           
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating"  style="text-align: center;">{{'altura_regis' | translate}}</ion-label>
+                  <ion-input  style="text-align: center;" formControlName="altura"></ion-input>
+                
+                </ion-item></div>
+              </ion-col>
+              <!--<ion-col size="auto">
+                <div style="text-align: center !important;">
+                  <ion-icon class="item-icon" slot="start" name="image-outline" (click)="this.takePhoto(0)"></ion-icon>
+                  <ion-icon class="item-icon" slot="end" name="camera-outline" (click)="this.takePhoto(1)"></ion-icon><br>
+                  <ion-icon class="item-icon" name="close-circle-outline" (click)="this.QuitarFoto()"></ion-icon>
+
+                </div>
+              </ion-col>-->
+              <ion-col> 
+                <div> <ion-item>
+                  <ion-label position="floating"  style="text-align: center;">{{'peso_regis' | translate}}</ion-label>
+                  <ion-input  style="text-align: center;" formControlName="peso"></ion-input>
+           
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating"  style="text-align: center;">{{'pesodeseado_regis' | translate}}</ion-label>
+                  <ion-input  style="text-align: center;" formControlName="peso_deseado"></ion-input>
+           
+                </ion-item></div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-button  style="text-align: center !important;"shape="round" fill="outline"  type="submit" [disabled]="!tasks.valid" >{{'editar_titulo' | translate}}</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
   </ion-content>
 </div>

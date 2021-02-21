@@ -8,6 +8,7 @@ import { UtilsServiceService } from 'src/app/services/utils-service.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -23,21 +24,21 @@ export class RegistroPage implements OnInit {
     foto:'',
     nombre:'',
     peso:0,
-    pesodeseado:0
+    peso_deseado:0
   };
   public formRegis: FormGroup;
   uploadURL: Observable<string>;
   
   
   constructor(private camera:Camera,private formBuilder:FormBuilder,private bbdds:BBDDServiceService,private utils:UtilsServiceService,
-    private router:Router) {
+    private router:Router,private auth:AuthServiceService ) {
         this.formRegis=this.formBuilder.group({
           nombre:['', [Validators.required]],
           email:['',[Validators.required,Validators.email]],
           contraseña:['',[Validators.required,Validators.minLength(8)]],
-          altura:['',[Validators.required]],
-          peso:['',[Validators.required]],
-          peso_deseado:['',[Validators.required]],
+          altura:['',[Validators.required],Validators.min(0)],
+          peso:['',[Validators.required],Validators.min(0)],
+          peso_deseado:['',[Validators.required],Validators.min(0)],
         });
     }
   
@@ -56,11 +57,13 @@ export class RegistroPage implements OnInit {
         this.usertoregis.contraseña=this.formRegis.get('contraseña').value;
         this.usertoregis.peso=this.formRegis.get('peso').value;
         this.usertoregis.correo=this.formRegis.get('email').value;
-        this.usertoregis.pesodeseado=this.formRegis.get('peso_deseado').value;
+        this.usertoregis.peso_deseado=this.formRegis.get('peso_deseado').value;
         if(this.image===environment.default_image){
           this.usertoregis.foto=this.image;
           try{
-            await this.bbdds.createUsuario(this.usertoregis);
+            let newid= await this.bbdds.createUsuario(this.usertoregis);
+            this.usertoregis.id=newid;
+            this.auth.login(this.usertoregis);
             await this.utils.dismiss();
             this.router.navigate(['/']);
           }catch(error){
@@ -74,7 +77,9 @@ export class RegistroPage implements OnInit {
               let url=await this.uploadURL.toPromise();
               this.usertoregis.foto=url;
               try{
-                await this.bbdds.createUsuario(this.usertoregis);
+                let newid= await this.bbdds.createUsuario(this.usertoregis);
+                this.usertoregis.id=newid;
+                this.auth.login(this.usertoregis);
                 await this.utils.dismiss();
                 this.router.navigate(['/']);
               }catch(error){
@@ -114,6 +119,10 @@ export class RegistroPage implements OnInit {
       // Handle error
       console.error(err);
     }); 
+  }
+
+  Volver(){
+    this.router.navigate(['/login']);
   }
 
 }

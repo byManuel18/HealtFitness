@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'title_producto' | translate}}</ion-title>
+    
+    <ion-button (click)="this.Salir()"  slot="end" style="margin-right: 8%;"> <ion-icon name="arrow-undo-outline" ></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="text-align: center;">
+    <form [formGroup]="tasks" (ngSubmit)="this.sendForm()">
+
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src={{this.imagen}} />
+        </ion-avatar>
+        <ion-label style="text-align: center;">Avatar</ion-label>
+        <ion-icon slot="end" name="image-outline" (click)="this.takePhoto(0)"></ion-icon>
+        <ion-icon slot="end" name="camera-outline" (click)="this.takePhoto(1)"></ion-icon>
+        <ion-icon slot="end" name="close-circle-outline" (click)="this.QuitarFoto()"></ion-icon>
+        <ion-icon *ngIf="this.producto.id>0&&this.producto.foto!=d_i" slot="end" name="arrow-undo-outline" (click)="this.DevolverFoto()"></ion-icon>
+        <ion-label position="floating">{{'nombre_producto' | translate}}</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'porcion_producto' | translate}}/g</ion-label>
+        <ion-input formControlName="porcion" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'calorias_producto' | translate}}/cal</ion-label>
+        <ion-input formControlName="calorias" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'grasassaturadas_producto' | translate}}</ion-label>
+        <ion-input formControlName="g_s" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'grasasinsaturadas_producto' | translate}}</ion-label>
+        <ion-input formControlName="g_i" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+    
+    <ion-label position="floating">{{'carbohidratos_productos' | translate}}</ion-label>
+        <ion-input formControlName="carbo" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'azucar_producto' | translate}}</ion-label>
+        <ion-input formControlName="azucar" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'proteinas_priducto' | translate}}</ion-label>
+        <ion-input formControlName="prote" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'fibra_producto' | translate}}</ion-label>
+        <ion-input formControlName="fibra" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'sal_producto' | translate}}</ion-label>
+        <ion-input formControlName="sal" type="number"></ion-input>
+      </ion-item>
+
+
+      <ion-button style="margin-top: 2%;" shape="round" fill="outline" type="submit" [disabled]="!tasks.valid">{{'titulo_guardar' | translate}}</ion-button>
+
+    </form>
+  </ion-card>
+</ion-content>
