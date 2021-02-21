@@ -125,4 +125,8 @@ export class RegistroPage implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  DeleteImage(){
+    this.image=environment.default_image;
+  }
+
 }

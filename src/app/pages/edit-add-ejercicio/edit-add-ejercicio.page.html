@@ -11,7 +11,6 @@
       <ion-item>
         <img width="20%" height="90%" src={{this.imagen}} />
         <ion-icon slot="end" name="image-outline" (click)="this.takeVideo(0)"></ion-icon>
-        <ion-icon slot="end" name="camera-outline" (click)="this.takeVideo(1)"></ion-icon>
         <ion-icon slot="end" name="close-circle-outline" (click)="this.DeleteVideo()"></ion-icon>
         <ion-icon *ngIf="this.ejercicio.id>0&&this.ejercicio.url!=''" slot="end" name="arrow-undo-outline" (click)="this.DevolverVideo()"></ion-icon>
        

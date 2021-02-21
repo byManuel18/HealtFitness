@@ -40,6 +40,9 @@ export class Tab4Page implements OnInit {
 
   ionViewDidEnter(){
     this.imagen=this.auth.acout.user.foto;
+    if(this.auth.acout.theme==1){
+      this.darkmode=true;
+    }
     this.tasks.get('nombre').setValue(this.auth.acout.user.nombre);
     this.tasks.get('altura').setValue(this.auth.acout.user.altura);
     this.tasks.get('peso').setValue(this.auth.acout.user.peso);
