@@ -98,7 +98,7 @@ export class UtilsServiceService {
       contentType = contentType || '';
       sliceSize = sliceSize || 512;
 
-      var byteCharacters = atob(b64Data);
+      var byteCharacters = window.atob(b64Data);
       var byteArrays = [];
 
       for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {

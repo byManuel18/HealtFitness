@@ -36,9 +36,9 @@ export class RegistroPage implements OnInit {
           nombre:['', [Validators.required]],
           email:['',[Validators.required,Validators.email]],
           contraseña:['',[Validators.required,Validators.minLength(8)]],
-          altura:['',[Validators.required],Validators.min(0)],
-          peso:['',[Validators.required],Validators.min(0)],
-          peso_deseado:['',[Validators.required],Validators.min(0)],
+          altura:['',[Validators.required,Validators.min(0)]],
+          peso:['',[Validators.required,Validators.min(0)]],
+          peso_deseado:['',[Validators.required,Validators.min(0)]],
         });
     }
   
